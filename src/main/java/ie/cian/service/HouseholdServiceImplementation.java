@@ -97,5 +97,10 @@ public class HouseholdServiceImplementation implements HouseholdService
 		}
 		return numberDeleted;
 	}
+	
+	public int averageAgeOfHouseholders() 
+	{
+		return householdDao.avgHouseholdersAge();
+	}
 
 }
