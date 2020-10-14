@@ -46,6 +46,13 @@ public class MainApp {
 		System.out.println("Change OccupantId 2 HouseholdId to 1 ==> " + householdService.changeHousehold(2, 1));
 		System.out.println("");
 		
+		// Delete a household, along with its occupants
+		System.out.println("Delete household id = 4 ==> " + householdService.deleteHousehold(4));
+		System.out.println("");
+		
+		// Delete a person
+		System.out.println("Delete occupant id = 4 ==> " + householdService.deleteOccupantId(4));
+		System.out.println("");
 		
 	}
 
