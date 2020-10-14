@@ -6,4 +6,5 @@ INSERT INTO household (householdId, eircode, address) VALUES
 INSERT INTO occupants (occupantId, occupantName, occupantAge, occupation, householdId) VALUES
 (1, 'Sarah Johnson', 3, 'pre-school', 1),
 (2, 'Micahel O Brien', 4, 'scholar', 2),
-(3, 'Conner Murphy', 5, 'scholar', 3);
+(3, 'Conner Murphy', 5, 'scholar', 3),
+(4, 'John Paul', 8, 'scholar', 3);

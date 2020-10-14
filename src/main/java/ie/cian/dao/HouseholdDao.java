@@ -2,6 +2,7 @@ package ie.cian.dao;
 
 import java.util.List;
 import ie.cian.classes.Household;
+import ie.cian.classes.Occupant;
 
 public interface HouseholdDao {
 	
@@ -12,4 +13,6 @@ public interface HouseholdDao {
 	Household findHouseholdByHouseholdId(int id);
 	
 	int addAHousehold(final Household household);
+	
+	List<Occupant> findHouseholdOccupants(String eircode);
 }

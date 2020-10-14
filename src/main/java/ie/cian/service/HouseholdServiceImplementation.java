@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import ie.cian.MainApp;
 import ie.cian.classes.Household;
+import ie.cian.classes.Occupant;
 import ie.cian.dao.HouseholdDao;
 import lombok.extern.java.Log;
 import lombok.extern.slf4j.Slf4j;
@@ -25,6 +26,10 @@ public class HouseholdServiceImplementation implements HouseholdService {
 			log.error("There is no household with ID " + eircode + " in the database.");
 		}
 		return returnedHousehold;
+	}
+	
+	public List<Occupant> findOccupantsHouseholdEircode(String eircode){
+		return householdDao.findHouseholdOccupants(eircode);
 	}
 	
 	public Household addAHousehold(final Household household) {
