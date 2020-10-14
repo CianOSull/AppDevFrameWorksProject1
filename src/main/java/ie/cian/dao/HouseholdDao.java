@@ -32,4 +32,10 @@ public interface HouseholdDao {
 	
 	int deleteOccupant(int occuapntId);
 	
+	int avgHouseholdersAge();
+	
+	int countOccupantStudents();
+	
+	int oapNumber();
+	
 }

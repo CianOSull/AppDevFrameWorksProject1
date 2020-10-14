@@ -18,4 +18,11 @@ public interface HouseholdService {
 	public int deleteHousehold(int householdId);
 	
 	int deleteOccupantId(int occupantId);
+	
+	int averageAgeOfHouseholders();
+	
+	int countStudentOccupants();
+	
+	int numberOfOap();
+	
 }

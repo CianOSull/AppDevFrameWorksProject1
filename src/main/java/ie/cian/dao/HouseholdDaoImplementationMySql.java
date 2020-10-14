@@ -176,4 +176,18 @@ public class HouseholdDaoImplementationMySql implements HouseholdDao {
 		return jdbcTemplate.update(SQL, new Object[] {occupantId});
 	}
 	
+	public int avgHouseholdersAge()
+	{
+		return jdbcTemplate.queryForObject("SELECT AVG(occupantAge) FROM occupants", Integer.class);
+	}
+	
+	public int countOccupantStudents()
+	{
+		return jdbcTemplate.queryForObject("SELECT COUNT(*) FROM occupants WHERE occupants.occupation = 'scholar' OR occupants.occupation = 'pre-school'", Integer.class);
+	}
+	
+	public int oapNumber()
+	{
+		return jdbcTemplate.queryForObject("SELECT COUNT(*) FROM occupants WHERE 65 <= occupants.occupantAge", Integer.class);
+	}
 }
