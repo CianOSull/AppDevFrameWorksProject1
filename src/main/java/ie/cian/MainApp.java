@@ -38,6 +38,13 @@ public class MainApp {
 		System.out.println("Add 'J45KL67' ==> " + householdService.addAHousehold(h));
 		System.out.println("");
 		
+		// Add a new person and assign that person to a household
+		System.out.println("Add 'Joseph ken' ==> " + householdService.addOccupant("Joseph Ken", 20, "scholar", 2));
+		System.out.println("");
+		
+		// Move a person from one household to another
+		System.out.println("Change OccupantId 2 HouseholdId to 1 ==> " + householdService.changeHousehold(2, 1));
+		System.out.println("");
 		
 		
 	}

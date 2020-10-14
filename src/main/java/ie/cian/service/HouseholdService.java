@@ -9,5 +9,9 @@ public interface HouseholdService {
 	
 	Household addAHousehold(final Household household);
 	
+	public Occupant addOccupant(final String occupantName, final int occupantAge, final String occupation, final int householdId);
+	
 	List<Occupant> findOccupantsHouseholdEircode(String eircode);
+	
+	int changeHousehold(int occupantId, int householdId); 
 }
