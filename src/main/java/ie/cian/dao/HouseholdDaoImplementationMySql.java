@@ -91,8 +91,32 @@ public class HouseholdDaoImplementationMySql implements HouseholdDao {
 					}
 				}, keyHolder);
 		
-		if(household.getOccupantList() != null) {
+		if(household.getOccupantList() != null) 
+		{
+			final String INSERT_SQL_OCCUPANTS = "INSERT INTO occupants (occupantName, occupantAge, occupation, householdId) VALUES (?, ?, ?, ?)";
+			// This is for getting the primary key i think
+			KeyHolder keyHolder_occuapnt = new GeneratedKeyHolder();
 			
+			
+			for(int i = 0; i < household.getOccupantList().size(); i++) 
+			{
+				final String occupantName = household.getOccupantList().get(i).getOccupantName();
+				final int occupantAge = household.getOccupantList().get(i).getOccupantAge();
+				final String occupation = household.getOccupantList().get(i).getOccupation();
+				final int householdId = keyHolder.getKey().intValue();
+				
+				jdbcTemplate.update(
+						new PreparedStatementCreator() {
+							public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
+								PreparedStatement ps = con.prepareStatement(INSERT_SQL_OCCUPANTS, new String[] {"occupantId"});
+								ps.setString(1, occupantName);
+								ps.setInt(2, occupantAge);
+								ps.setString(3, occupation);
+								ps.setInt(4, householdId);
+								return ps;
+							}
+						}, keyHolder_occuapnt);
+			}
 		}
 		
 		return keyHolder.getKey().intValue();

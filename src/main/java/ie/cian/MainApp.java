@@ -1,5 +1,6 @@
 package ie.cian;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.context.ApplicationContext;
@@ -26,8 +27,18 @@ public class MainApp {
 		System.out.println("");
 		
 		//Add a household, along with its occupant(s)
-		Household h = new Household("J45KL67", "5 Killarney", null);
+		Occupant occ1 = new Occupant("TestName1", 9, "scholar");
+		Occupant occ2 = new Occupant("TestName2", 3, "pre-school");
+		Occupant occ3 = new Occupant("TestName3", 18, "scholar");
+		List<Occupant> occ = new ArrayList();
+		occ.add(occ1);
+		occ.add(occ2);
+		occ.add(occ3);
+		Household h = new Household("J45KL67", "5 Killarney", occ);
 		System.out.println("Add 'J45KL67' ==> " + householdService.addAHousehold(h));
+		System.out.println("");
+		
+		
 		
 	}
 

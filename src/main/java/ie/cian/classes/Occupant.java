@@ -14,10 +14,9 @@ public class Occupant {
 	private String occupation;
 	private int householdId;
 	
-	public Occupant(String occName, int occAge, String occ, int houseId) {
+	public Occupant(String occName, int occAge, String occ) {
 		this.occupantName = occName;
 		this.occupantAge = occAge;
 		this.occupation = occ;
-		this.householdId = houseId;
 	}
 }
