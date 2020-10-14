@@ -102,5 +102,9 @@ public class HouseholdServiceImplementation implements HouseholdService
 	{
 		return householdDao.avgHouseholdersAge();
 	}
-
+	
+	public int countStudentOccupants()
+	{
+		return householdDao.countOccupantStudents();
+	}
 }

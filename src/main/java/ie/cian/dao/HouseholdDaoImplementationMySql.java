@@ -180,4 +180,9 @@ public class HouseholdDaoImplementationMySql implements HouseholdDao {
 	{
 		return jdbcTemplate.queryForObject("SELECT AVG(occupantAge) FROM occupants", Integer.class);
 	}
+	
+	public int countOccupantStudents()
+	{
+		return jdbcTemplate.queryForObject("SELECT COUNT(*) FROM occupants WHERE occupants.occupation = 'scholar' OR occupants.occupation = 'pre-school'", Integer.class);
+	}
 }

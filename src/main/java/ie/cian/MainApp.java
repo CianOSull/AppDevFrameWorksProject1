@@ -59,7 +59,7 @@ public class MainApp {
 		System.out.println("");
 		
 		// the average age of householders
-//		System.out.println("Delete occupant id = 4 ==> " + householdService.deleteOccupantId(4));
+		System.out.println("Amount of occupants who are students in the households ==> " + householdService.countStudentOccupants());
 		System.out.println("");
 		
 		// the average age of householders

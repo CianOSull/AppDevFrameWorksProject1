@@ -34,4 +34,6 @@ public interface HouseholdDao {
 	
 	int avgHouseholdersAge();
 	
+	int countOccupantStudents();
+	
 }
