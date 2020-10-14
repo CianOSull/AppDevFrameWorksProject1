@@ -79,5 +79,23 @@ public class HouseholdServiceImplementation implements HouseholdService
 		
 		return countChanged;
 	}
+	
+	public int deleteHousehold(int householdId) 
+	{
+		int numberDeleted = householdDao.deleteHouseholdbyId(householdId);
+		if(numberDeleted == 0) {
+			log.error("deleteHousehold: No such household with id " + householdId);
+		}
+		return numberDeleted;
+	}
+	
+	public int deleteOccupantId(int occupantId) 
+	{
+		int numberDeleted = householdDao.deleteOccupant(occupantId);
+		if(numberDeleted == 0) {
+			log.error("deleteHousehold: No such occupant with id " + occupantId);
+		}
+		return numberDeleted;
+	}
 
 }

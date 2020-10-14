@@ -164,4 +164,16 @@ public class HouseholdDaoImplementationMySql implements HouseholdDao {
 		return numberChanged;
 	}
 	
+	public int deleteHouseholdbyId(int householdId) {
+		final String SQL = "DELETE FROM household WHERE household.householdId = ?";
+		// Update always returns the number of records it has edited
+		return jdbcTemplate.update(SQL, new Object[] {householdId});
+	}
+	
+	public int deleteOccupant(int occupantId) {
+		final String SQL = "DELETE FROM occupants WHERE occupants.occupantId = ?";
+		// Update always returns the number of records it has edited
+		return jdbcTemplate.update(SQL, new Object[] {occupantId});
+	}
+	
 }

@@ -27,4 +27,9 @@ public interface HouseholdDao {
 	List<Occupant> findHouseholdOccupants(String eircode);
 	
 	int changeOccupantHousehold(int occupantId, int householdId);
+	
+	int deleteHouseholdbyId(int householdId);
+	
+	int deleteOccupant(int occuapntId);
+	
 }
