@@ -5,19 +5,11 @@ import ie.cian.classes.Household;
 
 public interface HouseholdDao {
 	
-	int getHouseholdCount();
+	boolean exists(String eircode);
 	
-	int getHouseholdCountStartsWith(char letter);
+	Household findHouseholdByHouseholdEircode(String eircode);
 	
-	boolean exists(String countyName);
+	Household findHouseholdByHouseholdId(int id);
 	
-	Household findHouseholdByHouseholdId(int countyId);
-	
-	List<Household> findAllCounties();
-	
-	int deleteHouseholdById(int countyId);
-	
-	int changeHouseholdName(String oldHouseholdName, String newHouseholdName);
-	
-	int addAHousehold(final String countyName);
+	int addAHousehold(final Household household);
 }

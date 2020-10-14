@@ -4,17 +4,7 @@ import java.util.List;
 import ie.cian.classes.Household;
 
 public interface HouseholdService {
-	int countTheCounties();
+	Household findHousehold(String eircode);
 	
-	int countTheCountriesThatStartWith(char letter);
-	
-	int deleteHouseholdById(int countyID);
-	
-	Household findHousehold(int countyId);
-	
-	List<Household> findAllCounties();
-	
-	Household addAHousehold(String countyName);
-	
-	int changeHouseholdName(String oldHouseholdName, String newHouseholdName);
+	Household addAHousehold(final Household household);
 }
