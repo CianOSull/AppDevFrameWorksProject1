@@ -22,4 +22,7 @@ public interface HouseholdService {
 	int averageAgeOfHouseholders();
 	
 	int countStudentOccupants();
+	
+	int numberOfOap();
+	
 }

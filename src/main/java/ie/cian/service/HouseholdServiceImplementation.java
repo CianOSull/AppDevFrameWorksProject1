@@ -107,4 +107,9 @@ public class HouseholdServiceImplementation implements HouseholdService
 	{
 		return householdDao.countOccupantStudents();
 	}
+	
+	public int numberOfOap() 
+	{
+		return householdDao.oapNumber();
+	}
 }

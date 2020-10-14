@@ -36,4 +36,6 @@ public interface HouseholdDao {
 	
 	int countOccupantStudents();
 	
+	int oapNumber();
+	
 }
