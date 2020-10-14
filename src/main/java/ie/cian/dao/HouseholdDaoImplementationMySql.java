@@ -24,9 +24,24 @@ public class HouseholdDaoImplementationMySql implements HouseholdDao {
 	@Autowired
 	JdbcTemplate jdbcTemplate;
 	
-	public boolean exists(String eircode) 
+	public boolean householdExists(String eircode) 
 	{
 		return 1 == jdbcTemplate.queryForObject("SELECT COUNT(1) FROM household WHERE household.eircode = ?", new Object[] {eircode}, Integer.class);
+	}
+	
+	public boolean occupantExists(String occupantName) 
+	{
+		return 1 == jdbcTemplate.queryForObject("SELECT COUNT(1) FROM occupants WHERE occupants.occupantName = ?", new Object[] {occupantName}, Integer.class);
+	}
+	
+	public boolean householdIdExists(int householdId) 
+	{
+		return 1 == jdbcTemplate.queryForObject("SELECT COUNT(1) FROM household WHERE household.householdId = ?", new Object[] {householdId}, Integer.class);
+	}
+	
+	public boolean occupantIdExists(int occupantId) 
+	{
+		return 1 == jdbcTemplate.queryForObject("SELECT COUNT(1) FROM occupants WHERE occupants.occupantId = ?", new Object[] {occupantId}, Integer.class);
 	}
 	
 	public Household findHouseholdByHouseholdEircode(String eircode) 
@@ -73,18 +88,31 @@ public class HouseholdDaoImplementationMySql implements HouseholdDao {
 			return null;
 		}
 	}
+	
+	public Occupant findOccupantById(int id) 
+	{
+		try 
+		{
+			
+			return jdbcTemplate.queryForObject("SELECT * FROM occupants WHERE occupants.occupantId = ?", new Object[] {id}, new OccupantRowMapper());
+		}
+		catch(Exception ex) 
+		{
+			return null;
+		}
+	}
 
 	
 	public int addAHousehold(final Household household) {
+		// The ? are placeholders for the column names
 		final String INSERT_SQL = "INSERT INTO household (eircode, address) VALUES (?, ?)";
-		// This is for getting the primary key i think
 		KeyHolder keyHolder = new GeneratedKeyHolder();
-		
-		 //This is an older way of using spring, dont need to think about it too much
+
 		jdbcTemplate.update(
 				new PreparedStatementCreator() {
 					public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
 						PreparedStatement ps = con.prepareStatement(INSERT_SQL, new String[] {"householdId"});
+						// The numbers reprsetn the indexes of the ? above
 						ps.setString(1, household.getEircode());
 						ps.setString(2, household.getAddress());
 						return ps;
@@ -92,12 +120,7 @@ public class HouseholdDaoImplementationMySql implements HouseholdDao {
 				}, keyHolder);
 		
 		if(household.getOccupantList() != null) 
-		{
-			final String INSERT_SQL_OCCUPANTS = "INSERT INTO occupants (occupantName, occupantAge, occupation, householdId) VALUES (?, ?, ?, ?)";
-			// This is for getting the primary key i think
-			KeyHolder keyHolder_occuapnt = new GeneratedKeyHolder();
-			
-			
+		{	
 			for(int i = 0; i < household.getOccupantList().size(); i++) 
 			{
 				final String occupantName = household.getOccupantList().get(i).getOccupantName();
@@ -105,21 +128,40 @@ public class HouseholdDaoImplementationMySql implements HouseholdDao {
 				final String occupation = household.getOccupantList().get(i).getOccupation();
 				final int householdId = keyHolder.getKey().intValue();
 				
-				jdbcTemplate.update(
-						new PreparedStatementCreator() {
-							public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
-								PreparedStatement ps = con.prepareStatement(INSERT_SQL_OCCUPANTS, new String[] {"occupantId"});
-								ps.setString(1, occupantName);
-								ps.setInt(2, occupantAge);
-								ps.setString(3, occupation);
-								ps.setInt(4, householdId);
-								return ps;
-							}
-						}, keyHolder_occuapnt);
+				// Just call the add occupant funciton multiple times
+				this.addAOccupant(occupantName, occupantAge, occupation, householdId);
 			}
 		}
 		
 		return keyHolder.getKey().intValue();
+	}
+	
+	public int addAOccupant(final String occupantName, final int occupantAge, final String occupation, final int householdId) {
+		final String INSERT_SQL = "INSERT INTO occupants (occupantName, occupantAge, occupation, householdId) VALUES (?, ?, ?, ?)";
+		KeyHolder keyHolder = new GeneratedKeyHolder();
+		
+		jdbcTemplate.update(
+				new PreparedStatementCreator() {
+					public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
+						PreparedStatement ps = con.prepareStatement(INSERT_SQL, new String[] {"occupantId"});
+						ps.setString(1, occupantName);
+						ps.setInt(2, occupantAge);
+						ps.setString(3, occupation);
+						ps.setInt(4, householdId);
+						return ps;
+					}
+				}, keyHolder);
+
+		return keyHolder.getKey().intValue();
+	}
+	
+	public int changeOccupantHousehold(int occupantId, int householdId) {
+		final String SQL = "UPDATE occupants set occupants.householdId = ? WHERE occupants.occupantId = ?";
+		int numberChanged = jdbcTemplate.update(SQL, new Object[] {householdId, occupantId});
+		if (numberChanged == 0) {
+			log.error("changeOccupantHousehold: Changed no records - perhaps there is no occupantId " + occupantId + "?");
+		}
+		return numberChanged;
 	}
 	
 }
