@@ -21,21 +21,13 @@ public class HouseholdServiceImplementation implements HouseholdService
 	@Autowired
 	HouseholdDao householdDao;
 	
-	public Household findHousehold(String eircode) 
-	{
-		Household returnedHousehold = householdDao.findHouseholdByHouseholdEircode(eircode);
-		if (returnedHousehold == null) 
-		{
-			log.error("There is no household with ID " + eircode + " in the database.");
-		}
-		return returnedHousehold;
-	}
-	
+	// Search for a household by Eircode, listing the details of the people in the household
 	public List<Occupant> findOccupantsHouseholdEircode(String eircode)
 	{
 		return householdDao.findHouseholdOccupants(eircode);
 	}
 	
+	//Add a household, along with its occupant(s)
 	public Household addAHousehold(final Household household) 
 	{
 		// If household doesnt exist do if statement
@@ -48,6 +40,7 @@ public class HouseholdServiceImplementation implements HouseholdService
 		return null;
 	}
 	
+	// Add a new person and assign that person to a household
 	// While occupant name isn't unique technically, its the most unique thing we can use for this case
 	public Occupant addOccupant(final String occupantName, final int occupantAge, final String occupation, final int householdId) 
 	{
@@ -61,6 +54,7 @@ public class HouseholdServiceImplementation implements HouseholdService
 		return null;
 	}
 	
+	// Move a person from one household to another
 	public int changeOccupantHousehold(int occupantId, int householdId)
 	{
 		if(!householdDao.occupantIdExists(occupantId)) {
@@ -80,6 +74,7 @@ public class HouseholdServiceImplementation implements HouseholdService
 		return countChanged;
 	}
 	
+	// Delete a household, along with its occupants
 	public int deleteHousehold(int householdId) 
 	{
 		int numberDeleted = householdDao.deleteHouseholdbyId(householdId);
@@ -89,6 +84,7 @@ public class HouseholdServiceImplementation implements HouseholdService
 		return numberDeleted;
 	}
 	
+	// Delete a person
 	public int deleteOccupantId(int occupantId) 
 	{
 		int numberDeleted = householdDao.deleteOccupant(occupantId);
@@ -98,18 +94,31 @@ public class HouseholdServiceImplementation implements HouseholdService
 		return numberDeleted;
 	}
 	
+	// the average age of householders
 	public int averageAgeOfHouseholders() 
 	{
 		return householdDao.avgHouseholdersAge();
 	}
 	
+	// the average age of householders
 	public int countStudentOccupants()
 	{
 		return householdDao.countOccupantStudents();
 	}
 	
+	// the average age of householders
 	public int numberOfOap() 
 	{
 		return householdDao.oapNumber();
+	}
+	
+	public Household findHousehold(String eircode) 
+	{
+		Household returnedHousehold = householdDao.findHouseholdByHouseholdEircode(eircode);
+		if (returnedHousehold == null) 
+		{
+			log.error("There is no household with ID " + eircode + " in the database.");
+		}
+		return returnedHousehold;
 	}
 }

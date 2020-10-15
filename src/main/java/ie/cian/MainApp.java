@@ -65,6 +65,10 @@ public class MainApp {
 		// the average age of householders
 		System.out.println("Amount of OAP ==> " + householdService.numberOfOap());
 		System.out.println("");
+		
+		/*
+		 * 4 Test cases are in the src/test/java folder with 2 in each file
+		 */
 	}
 
 }

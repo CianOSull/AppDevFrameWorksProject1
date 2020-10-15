@@ -24,7 +24,8 @@ public class TestHouseholdService {
 	
 	@Test
 	@Order(1)
-	public void testFindHouseholdOccupantsByEirecode() {
+	public void testFindHouseholdOccupantsByEirecode() 
+	{
 		List<Occupant> occList = householdService.findOccupantsHouseholdEircode("A12BC34");
 		String occName = "";
 		for(int i = 0; i < occList.size(); i++)
@@ -39,7 +40,8 @@ public class TestHouseholdService {
 	
 	@Test
 	@Order(2)
-	public void testHouseholdChanged() {
+	public void testHouseholdChanged() 
+	{
 		int recChanged = householdService.changeOccupantHousehold(1, 2);
 		assertEquals(1, recChanged);
 	}

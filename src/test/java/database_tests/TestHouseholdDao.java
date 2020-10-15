@@ -23,14 +23,16 @@ public class TestHouseholdDao {
 	
 	@Test
 	@Order(1)
-	public void testFindHouseholdById() {
+	public void testFindHouseholdById() 
+	{
 		Household first = householdDao.findHouseholdByHouseholdId(1);
 		assertEquals("A12BC34", first.getEircode());
 	}
 	
 	@Test
 	@Order(2)
-	public void testHouseholdInsert() {
+	public void testHouseholdInsert() 
+	{
 		Household newHousehold = new Household("F55FF55", "5 TestCase", null);
 		int newId = householdDao.addAHousehold(newHousehold);
 		Household foundHousehold = householdDao.findHouseholdByHouseholdId(newId);
