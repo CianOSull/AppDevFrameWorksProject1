@@ -43,7 +43,7 @@ public class MainApp {
 		System.out.println("");
 		
 		// Move a person from one household to another
-		System.out.println("Change OccupantId 2 HouseholdId to 1 ==> " + householdService.changeHousehold(2, 1));
+		System.out.println("Change OccupantId 2 HouseholdId to 1 ==> " + householdService.changeOccupantHousehold(2, 1));
 		System.out.println("");
 		
 		// Delete a household, along with its occupants

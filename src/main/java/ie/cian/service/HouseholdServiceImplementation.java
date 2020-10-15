@@ -61,7 +61,7 @@ public class HouseholdServiceImplementation implements HouseholdService
 		return null;
 	}
 	
-	public int changeHousehold(int occupantId, int householdId)
+	public int changeOccupantHousehold(int occupantId, int householdId)
 	{
 		if(!householdDao.occupantIdExists(occupantId)) {
 			log.error(occupantId + " is not in database.");
