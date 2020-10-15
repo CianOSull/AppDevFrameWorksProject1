@@ -13,7 +13,7 @@ public interface HouseholdService {
 	
 	List<Occupant> findOccupantsHouseholdEircode(String eircode);
 	
-	int changeHousehold(int occupantId, int householdId); 
+	int changeOccupantHousehold(int occupantId, int householdId); 
 	
 	public int deleteHousehold(int householdId);
 	
