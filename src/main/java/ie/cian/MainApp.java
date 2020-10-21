@@ -143,18 +143,23 @@ public class MainApp {
 				
 			// Move a person from one household to another
 			case 4:
-				System.out.println("Enter the id of occupant:");
+				System.out.println("Enter the id of occupant to move:");
 				int occId = scan.nextInt();
-				System.out.println("Enter the id of household:");
+				System.out.println("Enter the id of household to change to:");
 				int houseId = scan.nextInt();
 				
 //				System.out.println("Change OccupantId 2 HouseholdId to 1 ==> " + householdService.changeOccupantHousehold(2, 1));
-				System.out.println("Change OccupantId 2 HouseholdId to 1 ==> " + householdService.changeOccupantHousehold(occId, houseId));
+				System.out.println("Change OccupantId " + occId + " HouseholdId to " + houseId + " ==> " + householdService.changeOccupantHousehold(occId, houseId));
 				System.out.println("");
 				break;
+				
+			// Delete a household, along with its occupants
 			case 5:
-				// Delete a household, along with its occupants
-				System.out.println("Delete household id = 4 ==> " + householdService.deleteHousehold(4));
+				System.out.println("Enter the id of household to delete:");
+				int householdIdDelete = scan.nextInt();
+				
+//				System.out.println("Delete household id = 4 ==> " + householdService.deleteHousehold(4));
+				System.out.println("Delete household id = " + householdIdDelete + " ==> " + householdService.deleteHousehold(householdIdDelete));
 				System.out.println("");
 				break;
 			case 6:
