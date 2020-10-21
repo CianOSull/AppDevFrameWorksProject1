@@ -72,17 +72,46 @@ public class MainApp {
 				System.out.println("");
 				break;
 				
+			//Add a household, along with its occupant(s)
 			case 2:
-				//Add a household, along with its occupant(s)
-				Occupant occ1 = new Occupant("TestName1", 9, "scholar");
-				Occupant occ2 = new Occupant("TestName2", 3, "pre-school");
-				Occupant occ3 = new Occupant("TestName3", 18, "scholar");
-				List<Occupant> occ = new ArrayList();
-				occ.add(occ1);
-				occ.add(occ2);
-				occ.add(occ3);
-				Household h = new Household("J45KL67", "5 Killarney", occ);
-				System.out.println("Add 'J45KL67' ==> " + householdService.addAHousehold(h));
+				scan = new Scanner(System.in);
+				
+				System.out.println("Do you want to add occupant(s) to this household? y\\n: ");
+				String confirm = scan.nextLine();
+				
+				// Create the occupant list but by default make it null
+				List<Occupant> occList = null;
+				
+				if(confirm.equals("y"))
+				{
+					System.out.println("Enter the how many occupants you would like to add:");
+					int occCount = scan.nextInt();
+					
+					occList = new ArrayList();
+					
+					for(int i = 0; i < occCount; i++) {
+						System.out.println("Enter the name of occupant " + i+1 + ":");
+						String name = scan.nextLine();
+						System.out.println("Enter the age of occupant " + i+1 + ":");
+						int age = scan.nextInt();
+						System.out.println("Enter the occupation of occupant " + i+1 + ":");
+						String occupation = scan.nextLine();
+//						Occupant occ = new Occupant("TestName1", 9, "scholar");
+//						Occupant occ2 = new Occupant("TestName2", 3, "pre-school");
+//						Occupant occ3 = new Occupant("TestName3", 18, "scholar");
+						Occupant occ = new Occupant(name, age, occupation);
+						occList.add(occ);
+					}
+				}
+				
+				System.out.println("Enter the eircode of the household:");
+				String houseEircode = scan.nextLine();
+				System.out.println("Enter the address of the household:");
+				String address = scan.nextLine();
+				
+//				Household h = new Household("J45KL67", "5 Killarney", occList);
+				Household household = new Household(houseEircode, address, occList);
+				System.out.println("Add 'J45KL67' ==> " + householdService.addAHousehold(household));
 				System.out.println("");
 				break;
 			case 3:
