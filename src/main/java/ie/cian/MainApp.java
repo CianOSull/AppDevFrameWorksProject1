@@ -40,19 +40,38 @@ public class MainApp {
 					+ "\n\tThe number of OAPs (aged 65+) in the household."
 					+ "\n 8. Stop."
 					+ "\n>>>: ");
+			
 			input = scan.nextInt();
 			
 			
 			switch(input) {
+			
+			// Search for a household by Eircode, listing the details of the people in the household
 			case 1:
-				// Search for a household by Eircode, listing the details of the people in the household
-				System.out.println("Household Occupants of eircode G91HI23: ");
-				List<Occupant> occupants = householdService.findOccupantsHouseholdEircode("G91HI23");
-				for(Occupant occupant:occupants) {
-					System.out.println("\t" + occupant);
+				// Example eircode G91HI23
+				System.out.println("Enter the eircode of the household (be mindful of spaces) >>>: ");
+				
+				// Input eircode
+				scan = new Scanner(System.in);
+				String eircode = scan.nextLine();
+				
+				System.out.println("Household Occupants of eircode " + eircode + ": ");
+				List<Occupant> occupants = householdService.findOccupantsHouseholdEircode(eircode);
+				
+				if (occupants == null) 
+				{
+					System.out.println("No household was found or the household has no occupants.");
 				}
+				else 
+				{
+					for(Occupant occupant:occupants) {
+						System.out.println("\t" + occupant);
+					}
+				}
+				
 				System.out.println("");
 				break;
+				
 			case 2:
 				//Add a household, along with its occupant(s)
 				Occupant occ1 = new Occupant("TestName1", 9, "scholar");

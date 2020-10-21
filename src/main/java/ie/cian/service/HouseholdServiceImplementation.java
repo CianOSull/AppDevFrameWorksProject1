@@ -24,7 +24,15 @@ public class HouseholdServiceImplementation implements HouseholdService
 	// Search for a household by Eircode, listing the details of the people in the household
 	public List<Occupant> findOccupantsHouseholdEircode(String eircode)
 	{
-		return householdDao.findHouseholdOccupants(eircode);
+		if(householdDao.householdExists(eircode)) 
+		{
+			return householdDao.findHouseholdOccupants(eircode);
+		}
+		else {
+			log.error("Household with eircode " + eircode + " does not exist or was input incorrectly.");
+			return null;
+		}
+		
 	}
 	
 	//Add a household, along with its occupant(s)
