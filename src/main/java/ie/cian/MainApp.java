@@ -42,6 +42,8 @@ public class MainApp {
 					+ "\n>>>: ");
 			
 			input = scan.nextInt();
+			// Clear the \n character that nextInt does not clear
+			scan.nextLine();
 			
 			
 			switch(input) {
@@ -52,7 +54,6 @@ public class MainApp {
 				System.out.println("Enter the eircode of the household (be mindful of spaces) >>>: ");
 				
 				// Input eircode
-				scan = new Scanner(System.in);
 				String eircode = scan.nextLine();
 				
 				System.out.println("Household Occupants of eircode " + eircode + ": ");
@@ -74,8 +75,6 @@ public class MainApp {
 				
 			//Add a household, along with its occupant(s)
 			case 2:
-				scan = new Scanner(System.in);
-				
 				System.out.println("Do you want to add occupant(s) to this household? y\\n: ");
 				String confirm = scan.nextLine();
 				
@@ -86,15 +85,19 @@ public class MainApp {
 				{
 					System.out.println("Enter the how many occupants you would like to add:");
 					int occCount = scan.nextInt();
+					// Clear the \n character that nextInt does not clear
+					scan.nextLine();
 					
 					occList = new ArrayList();
 					
 					for(int i = 0; i < occCount; i++) {
-						System.out.println("Enter the name of occupant " + i+1 + ":");
+						System.out.println("Enter the name of occupant " + (i+1) + ":");
 						String name = scan.nextLine();
-						System.out.println("Enter the age of occupant " + i+1 + ":");
+						System.out.println("Enter the age of occupant " + (i+1) + ":");
 						int age = scan.nextInt();
-						System.out.println("Enter the occupation of occupant " + i+1 + ":");
+						// Clear the \n character that nextInt does not clear
+						scan.nextLine();
+						System.out.println("Enter the occupation of occupant " + (i+1) + ":");
 						String occupation = scan.nextLine();
 //						Occupant occ = new Occupant("TestName1", 9, "scholar");
 //						Occupant occ2 = new Occupant("TestName2", 3, "pre-school");
