@@ -38,7 +38,7 @@ public class MainApp {
 					+ "\n\tThe average age of householders."
 					+ "\n\tThe number of students in the households."
 					+ "\n\tThe number of OAPs (aged 65+) in the household."
-					+ "\n 8. Stop."
+					+ "\n 8. Stop inputs."
 					+ "\n>>>: ");
 			
 			input = scan.nextInt();
@@ -162,22 +162,30 @@ public class MainApp {
 				System.out.println("Delete household id = " + householdIdDelete + " ==> " + householdService.deleteHousehold(householdIdDelete));
 				System.out.println("");
 				break;
+				
+			// Delete a person
 			case 6:
-				// Delete a person
-				System.out.println("Delete occupant id = 4 ==> " + householdService.deleteOccupantId(4));
+				System.out.println("Enter the id of occupant to delete:");
+				int occupantIdDelete = scan.nextInt();
+				
+//				System.out.println("Delete occupant id = 4 ==> " + householdService.deleteOccupantId(4));
+				System.out.println("Delete occupant id = " + occupantIdDelete + " ==> " + householdService.deleteOccupantId(occupantIdDelete));
 				System.out.println("");
 				break;
+			
+			// the average age of householders
 			case 7:
-				// the average age of householders
 				System.out.println("\nThe average age of householders ==> " + householdService.averageAgeOfHouseholders());
 				System.out.println("Amount of occupants who are students in the households ==> " + householdService.countStudentOccupants());
 				System.out.println("Amount of OAP ==> " + householdService.numberOfOap());
 				System.out.println("");
 				break;
+				
 			case 8:
 				done = true;
 				System.out.println("Thank you for putting in inputs.");
 				break;
+				
 			default:
 				System.out.println("You need to input a number a number between 1 and 8");
 			}
