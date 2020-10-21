@@ -99,6 +99,8 @@ public class MainApp {
 						scan.nextLine();
 						System.out.println("Enter the occupation of occupant " + (i+1) + ":");
 						String occupation = scan.nextLine();
+						
+						// Example occupants
 //						Occupant occ = new Occupant("TestName1", 9, "scholar");
 //						Occupant occ2 = new Occupant("TestName2", 3, "pre-school");
 //						Occupant occ3 = new Occupant("TestName3", 18, "scholar");
@@ -112,19 +114,42 @@ public class MainApp {
 				System.out.println("Enter the address of the household:");
 				String address = scan.nextLine();
 				
+				// Example household
 //				Household h = new Household("J45KL67", "5 Killarney", occList);
 				Household household = new Household(houseEircode, address, occList);
 				System.out.println("Add 'J45KL67' ==> " + householdService.addAHousehold(household));
 				System.out.println("");
 				break;
+				
+			// Add a new person and assign that person to a household
 			case 3:
-				// Add a new person and assign that person to a household
-				System.out.println("Add 'Joseph ken' ==> " + householdService.addOccupant("Joseph Ken", 20, "scholar", 2));
+				System.out.println("Enter the name of occupant:");
+				String name = scan.nextLine();
+				System.out.println("Enter the age of occupant:");
+				int age = scan.nextInt();
+				// Clear the \n character that nextInt does not clear
+				scan.nextLine();
+				System.out.println("Enter the occupation of occupant:");
+				String occupation = scan.nextLine();
+				System.out.println("Enter household id of new occupant");
+				int householdId = scan.nextInt();
+				// Clear the \n character that nextInt does not clear
+				scan.nextLine();
+				
+//				System.out.println("Add 'Joseph ken' ==> " + householdService.addOccupant("Joseph Ken", 20, "scholar", 2));
+				System.out.println("Add '" + name + "' ==> " + householdService.addOccupant(name, age, occupation, householdId));
 				System.out.println("");
 				break;
+				
+			// Move a person from one household to another
 			case 4:
-				// Move a person from one household to another
-				System.out.println("Change OccupantId 2 HouseholdId to 1 ==> " + householdService.changeOccupantHousehold(2, 1));
+				System.out.println("Enter the id of occupant:");
+				int occId = scan.nextInt();
+				System.out.println("Enter the id of household:");
+				int houseId = scan.nextInt();
+				
+//				System.out.println("Change OccupantId 2 HouseholdId to 1 ==> " + householdService.changeOccupantHousehold(2, 1));
+				System.out.println("Change OccupantId 2 HouseholdId to 1 ==> " + householdService.changeOccupantHousehold(occId, houseId));
 				System.out.println("");
 				break;
 			case 5:
