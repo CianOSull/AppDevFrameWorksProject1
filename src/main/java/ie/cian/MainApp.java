@@ -19,11 +19,17 @@ public class MainApp {
 		
 		HouseholdService householdService = (HouseholdService) context.getBean("householdServiceImplementation");
 		
+		// Boolean for while loop
 		boolean done = false;
 		
-		// Test scanner
+		// Create the scanner for inputs
 		Scanner scan = new Scanner(System.in);
 		
+		/*
+		 * 4 Test cases are in the src/test/java folder with 2 in each file
+		 * Also there are example input comments below that I made to remind myself
+		 * some inputs that worked when I was testing functionality.
+		 */
 		while(!done) {
 			int input = 0;
 			
@@ -100,10 +106,13 @@ public class MainApp {
 						System.out.println("Enter the occupation of occupant " + (i+1) + ":");
 						String occupation = scan.nextLine();
 						
-						// Example occupants
-//						Occupant occ = new Occupant("TestName1", 9, "scholar");
-//						Occupant occ2 = new Occupant("TestName2", 3, "pre-school");
-//						Occupant occ3 = new Occupant("TestName3", 18, "scholar");
+						/* 
+						 * Example occupants information: 
+						 * name 		age 	occupation
+						 * TestName1	9		scholar
+						 * TestName2	3		pre-school
+						 * TestName3	18		scholar
+						 */
 						Occupant occ = new Occupant(name, age, occupation);
 						occList.add(occ);
 					}
@@ -115,9 +124,10 @@ public class MainApp {
 				String address = scan.nextLine();
 				
 				// Example household
-//				Household h = new Household("J45KL67", "5 Killarney", occList);
+				// eircode = J45KL67
+				// address = 5 Killarney
 				Household household = new Household(houseEircode, address, occList);
-				System.out.println("Add 'J45KL67' ==> " + householdService.addAHousehold(household));
+				System.out.println("Add '" + houseEircode + "' ==> " + householdService.addAHousehold(household));
 				System.out.println("");
 				break;
 				
@@ -136,7 +146,11 @@ public class MainApp {
 				// Clear the \n character that nextInt does not clear
 				scan.nextLine();
 				
-//				System.out.println("Add 'Joseph ken' ==> " + householdService.addOccupant("Joseph Ken", 20, "scholar", 2));
+				// Example inputs
+				// name = Joseph Ken
+				// age = 20
+				// occupation = scholar
+				// householdId = 2
 				System.out.println("Add '" + name + "' ==> " + householdService.addOccupant(name, age, occupation, householdId));
 				System.out.println("");
 				break;
@@ -148,7 +162,9 @@ public class MainApp {
 				System.out.println("Enter the id of household to change to:");
 				int houseId = scan.nextInt();
 				
-//				System.out.println("Change OccupantId 2 HouseholdId to 1 ==> " + householdService.changeOccupantHousehold(2, 1));
+				// Example inputs
+				// occupantId 2
+				// householdId 1
 				System.out.println("Change OccupantId " + occId + " HouseholdId to " + houseId + " ==> " + householdService.changeOccupantHousehold(occId, houseId));
 				System.out.println("");
 				break;
@@ -158,7 +174,8 @@ public class MainApp {
 				System.out.println("Enter the id of household to delete:");
 				int householdIdDelete = scan.nextInt();
 				
-//				System.out.println("Delete household id = 4 ==> " + householdService.deleteHousehold(4));
+				// Example input
+				// householdId = 4
 				System.out.println("Delete household id = " + householdIdDelete + " ==> " + householdService.deleteHousehold(householdIdDelete));
 				System.out.println("");
 				break;
@@ -168,7 +185,8 @@ public class MainApp {
 				System.out.println("Enter the id of occupant to delete:");
 				int occupantIdDelete = scan.nextInt();
 				
-//				System.out.println("Delete occupant id = 4 ==> " + householdService.deleteOccupantId(4));
+				// Example inputs:
+				// occupantId = 4
 				System.out.println("Delete occupant id = " + occupantIdDelete + " ==> " + householdService.deleteOccupantId(occupantIdDelete));
 				System.out.println("");
 				break;
@@ -190,10 +208,6 @@ public class MainApp {
 				System.out.println("You need to input a number a number between 1 and 8");
 			}
 		}
-		
-		/*
-		 * 4 Test cases are in the src/test/java folder with 2 in each file
-		 */
 	}
 
 }
